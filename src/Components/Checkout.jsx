@@ -3,11 +3,13 @@ import { CartContext } from '../context/CartContext'
 import { useForm } from 'react-hook-form'
 import { collection, addDoc } from 'firebase/firestore'
 import { guitarproductos } from '../firebase/config'
+import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
-  const [guitarid, setguitarid] = useState('')
-  const { carrito, precioTotal, vaciarCarrito } = useContext(CartContext)
-  const { register, handleSubmit } = useForm()
+  const [guitarid, setguitarid] = useState('');
+  const { carrito, precioTotal, vaciarCarrito } = useContext(CartContext);
+  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
   const comprar = (data) => {
     const pedido = {
@@ -28,7 +30,7 @@ const Checkout = () => {
     return (
       <section className="max-w-screen-md mx-auto px-4 py-10 text-center">
         <h1 className="text-2xl font-bold text-blue-800 mb-4">
-          Que disfrutes tu producto tanto como disfrutas la música 🎶
+          Muchas gracias por tu pedido, en breve nos comunicamos contigo 
         </h1>
         <p className="text-lg text-gray-700">Número de seguimiento: <span className="font-semibold">{guitarid}</span></p>
       </section>
@@ -80,6 +82,13 @@ const Checkout = () => {
         >
           Confirmar Compra
         </button>
+        <button
+  type="button"
+  onClick={() => navigate('/productos')} 
+  className="bg-red-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-red-800 transition"
+>
+  Cancelar y volver atrás
+</button>
       </form>
     </section>
   )

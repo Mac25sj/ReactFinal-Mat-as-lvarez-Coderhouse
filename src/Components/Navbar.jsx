@@ -39,7 +39,6 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Menú móvil */}
       {menuOpen && (
         <ul className="flex flex-col gap-4 mt-4 md:hidden">
           {['Inicio', 'Guitarras', 'Bajos', 'Accesorios'].map((label, i) => (

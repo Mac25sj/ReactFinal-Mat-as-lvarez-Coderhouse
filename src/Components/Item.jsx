@@ -1,13 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Item = ({ producto }) => {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row gap-6 p-6">
+      
       <img
         src={producto.imagen}
-        alt={producto.titulo}
-        className="w-full md:w-1/2 object-cover rounded-lg aspect-[4/3]"
+        alt={`Imagen del producto ${producto.titulo}`}
+        loading="lazy"
+        className="w-full md:w-1/2 object-cover rounded-lg aspect-[4/3] shadow-sm hover:shadow-lg transition-shadow duration-300 hover:scale-105"
       />
 
       <div className="flex flex-col justify-between gap-4 md:w-1/2">
@@ -26,11 +28,11 @@ const Item = ({ producto }) => {
           to={`/item/${producto.id}`}
           className="self-start bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-900 transition"
         >
-          Ver más
+          Ver producto
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Item
+export default Item;

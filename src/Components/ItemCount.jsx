@@ -25,7 +25,7 @@ const ItemCount = ({ cantidad, handleRestar, handleSumar, handleAgregar }) => {
         onClick={handleAgregar}
         className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-800 transition font-medium"
       >
-        Agregar al carrito
+        Añadir a carrito
       </button>
     </div>
   )

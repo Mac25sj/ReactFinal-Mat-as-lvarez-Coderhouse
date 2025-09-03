@@ -7,12 +7,16 @@ import Checkout from "./Components/Checkout";
 import ItemListContainer from "./Components/ItemListContainer";
 import Footer from "./Components/footer";
 import { FaWhatsapp } from "react-icons/fa";
+import { ThemeProvider } from './context/ThemeContext';
+
 
 
 
 function App() {
   return (
     <div>
+          <ThemeProvider>
+
       <CartProvider>
         <BrowserRouter>
 
@@ -27,7 +31,7 @@ function App() {
             <Route path="/checkout" element={<Checkout />}/>
           </Routes>
           <a
-  href="https://wa.me/598098695029" // Reemplazá con tu número real
+  href="https://wa.me/598098695029" 
   target="_blank"
   rel="noopener noreferrer"
   className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition transform hover:scale-105"
@@ -39,6 +43,8 @@ function App() {
         </BrowserRouter>
 
       </CartProvider>
+          </ThemeProvider>
+
     </div>
   );
 }

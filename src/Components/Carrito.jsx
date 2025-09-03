@@ -1,17 +1,27 @@
-import React, { useContext } from 'react'
-import { CartContext } from '../context/CartContext'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
+import { Link } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
+
 
 const Carrito = () => {
-  const { carrito, precioTotal, vaciarCarrito } = useContext(CartContext)
+  const { carrito, precioTotal, vaciarCarrito } = useContext(CartContext);
+  const { modoDark } = useTheme();
+
+  const bgColor = modoDark ? 'bg-gray-900' : 'bg-white';
+  const cardBg = modoDark ? 'bg-gray-800' : 'bg-white';
+  const titleColor = modoDark ? 'text-white' : 'text-blue-800';
+  const textColor = modoDark ? 'text-gray-300' : 'text-gray-700';
+  const metaColor = modoDark ? 'text-gray-400' : 'text-gray-600';
+  const shadowStyle = modoDark ? 'shadow-md' : 'shadow-lg';
 
   const handleVaciar = () => {
-    vaciarCarrito()
-  }
+    vaciarCarrito();
+  };
 
   return (
-    <section className="max-w-screen-xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-blue-800 mb-8 text-center">Carrito</h1>
+    <section className={`max-w-screen-xl mx-auto px-4 py-10 transition-colors duration-300 ${bgColor}`}>
+      <h1 className={`text-3xl font-bold mb-8 text-center ${titleColor}`}>Carrito</h1>
 
       {carrito.length > 0 ? (
         <>
@@ -19,13 +29,13 @@ const Carrito = () => {
             {carrito.map((prod) => (
               <div
                 key={prod.id}
-                className="bg-white rounded-lg shadow-md p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center"
+                className={`rounded-lg p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center ${cardBg} ${shadowStyle}`}
               >
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-800">{prod.titulo}</h3>
-                  <p className="text-sm text-gray-600">Precio unitario: ${prod.precio}</p>
-                  <p className="text-sm text-gray-600">Cantidad: {prod.cantidad}</p>
-                  <p className="text-sm text-gray-600 font-medium">
+                  <h3 className={`text-xl font-semibold ${textColor}`}>{prod.titulo}</h3>
+                  <p className={`text-sm ${metaColor}`}>Precio unitario: ${prod.precio}</p>
+                  <p className={`text-sm ${metaColor}`}>Cantidad: {prod.cantidad}</p>
+                  <p className={`text-sm font-medium ${metaColor}`}>
                     Subtotal: ${prod.precio * prod.cantidad}
                   </p>
                 </div>
@@ -34,7 +44,7 @@ const Carrito = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <h2 className="text-2xl font-bold text-green-700">
+            <h2 className="text-2xl font-bold text-green-500">
               Total: ${precioTotal()}
             </h2>
 
@@ -55,15 +65,16 @@ const Carrito = () => {
           </div>
         </>
       ) : (
-        <div className="text-center text-gray-700 text-lg mt-10">
+        <div className={`text-center text-lg mt-10 ${textColor}`}>
           <h2 className="text-xl font-semibold mb-4">
             Tu carrito está más ligero que una nota musical al viento 🎶
           </h2>
-          <p>¡Añade productos y crea tu sinfonía de compras! 🛒</p>
+          <p>¡Añade productos y crea tu sinfonía de compras! 
+ </p>
         </div>
       )}
     </section>
-  )
-}
+  );
+};
 
-export default Carrito
+export default Carrito;
